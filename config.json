@@ -1,0 +1,4 @@
+{
+    "feedmapjsonfile" : "feedmap.json",
+    "logstashconfigpath" : "readerapp.conf"
+}

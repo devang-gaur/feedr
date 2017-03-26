@@ -1,0 +1,102 @@
+<% include partials/header %>
+
+<!-- main container begins -->
+<div class="container-fluid">
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="row" style="text-align:center">
+
+            <div class="col-md-2 titlediv">Feedr</div>
+
+            <div class="col-md-5" id="custom-search-input">
+
+                <form onSubmit="return handleSearchSubmit()" >
+                <div class="input-group col-md-12">
+                    <input type="text" id="searchbar" class="form-control input-lg" placeholder="enter your keywords here .."/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+
+                </form>
+            </div>
+
+            <div class="col-md-1" > <button class="btn" data-toggle="modal" data-target="#feedAddModal" ><img src= <%= pics.plus %> /> </button></div>
+
+        </div>
+    </nav>
+
+
+    <!--<div class="row">-->
+
+        <!-- sidebar div -->
+        <div class="col-md-2 container-fluid aliaschooser" >
+            <div class="sidebar-nav-fixed" style="border:1px solid black;background:white">
+
+                <ul class="nav">
+
+                    <form class="facet-panel">
+
+                    <% for(var i in websites) { %>
+                        <div class="checkbox facet-check">
+                            <label><input type="checkbox" name="<%= websites[i] %>" class="facet-option" value="<%= websites[i] %>"/><%= websites[i] %></label>
+                        </div>
+                    <% } %>
+
+                    </form>
+
+                </ul>
+            </div>
+        </div>
+        <!-- sidebar div ends -->
+
+        <!-- div displaying the feeds -->
+        <div id="feed-display" class="col-md-9 container-fluid" style="background:white; align-content:center">
+
+            <div id="feedgridlayout-container" class="container"></div>
+
+            <div id="nav-btn-container"><!-- container for the prev and next buttons -->
+                <div class="container-fluid">
+                    <ul class="pager">
+                        <li class="non-active-btn btn nav-btn" id="prev-nav-btn" val=1 onclick="return feedbatchloader.loadPrevFeedBatch()">PREVIOUS</li>
+                        <li class="active-btn btn nav-btn" id="next-nav-btn" val=12 onclick="return feedbatchloader.loadNextFeedBatch()">NEXT</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- feed-display division ends -->
+</div>
+<!-- main container ends -->
+
+    <% include partials/addfeedmodal %>
+
+    <% include partials/articlemodal %>
+
+<script src="/javascripts/feedfacethandler.js"></script>
+<script src="/javascripts/searchbarhandler.js"></script>
+<script src="/javascripts/feedbatchloader.js"></script>
+<script src="/javascripts/articlepopup.js"></script>
+<script>
+
+    document.onLoad = feedbatchloader.loadFeedBatch(1);
+
+    $(document).ready(function(){
+
+        $('#feedgridlayout-container').on('click', 'div.topic', function(){
+            var src = $(this).find('span.feedid').html();
+            $('#articleframe').attr('src', src);
+            $('#articleModal').modal('show');
+        });
+
+        $('#articleModal').on('hide.bs.modal', function() {
+            $('#articleframe').attr('src', '');
+        })
+
+
+    });
+
+</script>
+<% include partials/footer %>

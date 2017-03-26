@@ -1,0 +1,30 @@
+{
+  "name": "feedr",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "dateutil": "^0.1.0",
+    "debug": "~2.2.0",
+    "ejs": "~2.5.2",
+    "express": "~4.14.0",
+    "fast-html-parser": "^1.0.1",
+    "handlebars": "^4.0.6",
+    "is-url": "^1.2.2",
+    "is-xml": "^0.1.0",
+    "jsonfile": "^2.4.0",
+    "morgan": "~1.7.0",
+    "serve-favicon": "~2.3.0",
+    "xml-parse-from-string": "^1.0.0",
+    "xml-parser": "^1.2.1",
+    "xml2js": "^0.4.17"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-util": "^3.0.8"
+  }
+}
